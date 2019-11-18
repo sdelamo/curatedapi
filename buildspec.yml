@@ -14,7 +14,7 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'build/reports/tests/test'
+  base-directory: 'subprojects/curated/build/reports/tests/test'
 cache:
   paths:
     - '/root/.gradle/caches/**/*'
