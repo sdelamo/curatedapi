@@ -23,13 +23,16 @@ import spock.lang.Requires
 import spock.lang.Shared
 import spock.lang.Specification
 
-@Requires({sys['curated.publicationkey']})
+@Requires({
+    (sys['curated.publicationkey'] && sys['curated.api-key']) ||
+            (env['CURATED_PUBLICATION_KEY'] && env['CURATED_API_KEY'])
+})
 class CuratedClientSpec extends Specification {
 
     Map<String, Object> getConfiguration() {
         [
-                'curated.publication-key': System.getProperty('curated.publicationkey'),
-                'curated.api-key': System.getProperty('curated.apikey'),
+                'curated.publication-key': System.getProperty('curated.publicationkey') ?: System.getenv('CURATED_PUBLICATION_KEY'),
+                'curated.api-key': System.getProperty('curated.apikey') ?: System.getenv('CURATED_API_KEY'),
         ]
     }
 
