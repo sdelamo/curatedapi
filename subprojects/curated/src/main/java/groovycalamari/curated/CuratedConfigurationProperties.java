@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2019 Sergio del Amo.
+ * Copyright 2020 Sergio del Amo.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,18 @@
 package groovycalamari.curated;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
+import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.client.HttpClientConfiguration;
 import io.micronaut.runtime.ApplicationConfiguration;
-
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import javax.validation.constraints.NotBlank;
 import java.time.Duration;
 
 /**
  * {@link ConfigurationProperties} for {@link CuratedClient}.
  */
+@Requires(property = CuratedConfigurationProperties.PREFIX + ".publication-key")
+@Requires(property = CuratedConfigurationProperties.PREFIX + ".api-key")
 @ConfigurationProperties(CuratedConfigurationProperties.PREFIX)
 public class CuratedConfigurationProperties extends HttpClientConfiguration {
     public static final String PREFIX = "curated";
@@ -36,19 +38,19 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
 
     private final CuratedConnectionPoolConfiguration connectionPoolConfiguration;
 
-    @Nonnull
+    @NonNull
     @NotBlank
     private String url = HOST_LIVE;
 
-    @Nonnull
+    @NonNull
     @NotBlank
     private String apiVersion = V1;
 
-    @Nonnull
+    @NonNull
     @NotBlank
     private String publicationKey;
 
-    @Nonnull
+    @NonNull
     @NotBlank
     private String apiKey;
 
@@ -59,46 +61,47 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
     }
 
     @NotBlank
-    @Nonnull
+    @NonNull
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    public void setApiVersion(@Nonnull @NotBlank String apiVersion) {
+    public void setApiVersion(@NonNull @NotBlank String apiVersion) {
         this.apiVersion = apiVersion;
     }
 
     @NotBlank
-    @Nonnull
+    @NonNull
     public String getPublicationKey() {
         return this.publicationKey;
     }
 
-    public void setPublicationKey(@Nonnull @NotBlank String publicationKey) {
+    public void setPublicationKey(@NonNull @NotBlank String publicationKey) {
         this.publicationKey = publicationKey;
     }
 
     @NotBlank
-    @Nonnull
+    @NonNull
     public String getApiKey() {
         return this.apiKey;
     }
 
-    public void setApiKey(@Nonnull @NotBlank String apiKey) {
+    public void setApiKey(@NonNull @NotBlank String apiKey) {
         this.apiKey = apiKey;
     }
 
     @NotBlank
-    @Nonnull
+    @NonNull
     public String getUrl() {
         return this.url;
     }
 
-    public void setUrl(@Nonnull @NotBlank String url) {
+    public void setUrl(@NonNull @NotBlank String url) {
         this.url = url;
     }
 
     @Override
+    @NonNull
     public ConnectionPoolConfiguration getConnectionPoolConfiguration() {
         return this.connectionPoolConfiguration;
     }

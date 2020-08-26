@@ -1,13 +1,13 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2019 Sergio del Amo.
+ * Copyright 2020 Sergio del Amo.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     https://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 plugins {
-    id 'org.kordamp.gradle.project' version '0.27.0'
-    id 'org.kordamp.gradle.bintray' version '0.27.0'
+    id 'org.kordamp.gradle.project' version '0.39.0'
+    id 'org.kordamp.gradle.bintray' version '0.39.0'
     id 'groovy'
     id "com.gradle.build-scan" version "3.0"
 }
@@ -35,17 +34,16 @@ config {
     release = (rootProject.findProperty('release') ?: false).toBoolean()
 
     info {
-        name        = 'Exchanges Rates API'
+        name        = 'Curated API'
         vendor      = 'Groovy Calamari'
-        description = 'Java Micronaut HTTP Client for exchangeratesapi.io'
-        inceptionYear = '2019'
+        description = 'Java Micronaut HTTP Client for curated.co API'
+        inceptionYear = '2020'
 
         links {
             website      = "https://github.com/${githubOrg}/${githubSlug}"
             issueTracker = "https://github.com/${githubOrg}/${githubSlug}/issues"
             scm          = "https://github.com/${githubOrg}/${githubSlug}.git"
         }
-
         people {
             person {
                 id    = 'sdelamo'
@@ -75,22 +73,32 @@ config {
         userOrg    = githubOrg
         name       = githubSlug
     }
-
 }
 
 allprojects {
     apply plugin: 'idea'
-
+    config {
+        docs {
+            groovydoc  { enabled = false }
+        }
+    }
     repositories {
         mavenCentral()
         maven { url "https://jcenter.bintray.com" }
     }
-    licenseGradle.enabled = false
 }
 subprojects {
     compileGroovy {
         sourceCompatibility = project.sourceCompatibility
         targetCompatibility = project.targetCompatibility
+    }
+
+    config {
+        coverage {
+            jacoco {
+                enabled = project.file('src/test').exists()
+            }
+        }
     }
 }
 

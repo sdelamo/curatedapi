@@ -1,0 +1,56 @@
+# Curated API Micronaut Java Library
+
+This project is a Java libray to consume the https://curated.co[Curated] API.
+
+The library exposes methods to consume the endpoints described in the https://curated.co[Curated] API documentation:
+
+- http://support.curated.co/integrations/getting-started-with-the-curated-api/[Getting Curated API]
+- http://support.curated.co/integrations/fetching-issue-data-with-the-api/[Fetching Issue data with the API]
+- http://support.curated.co/integrations/adding-subscribers-with-the-api/[Adding subscribers with the API]
+
+== Configuration
+
+You will need to configure your publication and api key
+
+.application.yml
+[source,yaml]
+----
+curated:
+  publication-key: 'XXXX'
+  api-key: 'YYYY'
+----
+
+Once, you have the configuration in place, the library registers a bean of type `CuratedApi` in the application context.
+
+== Fetch issues
+
+[source,java]
+----
+CuratedApi curatedApi;
+
+....
+
+Single<Issues> issues = curatedApi.issues();
+----
+
+== Fetch single Issue
+
+[source,java]
+----
+CuratedApi curatedApi;
+
+....
+
+Single<Issue> issues = curatedApi.issue(1);
+----
+
+== Add email subscriber
+
+[source,java]
+----
+CuratedApi curatedApi;
+
+....
+
+ Single<AddEmailSubscriberResponse> response = curatedApi.addEmailSubscriber(new AddEmailSubscriber("steve@apple.com"));
+----

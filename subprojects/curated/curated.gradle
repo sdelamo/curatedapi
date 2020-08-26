@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2019 Sergio del Amo.
+ * Copyright 2020 Sergio del Amo.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 plugins {
     id 'java-library'
     id 'groovy'
 }
 
 config {
-    groovydoc  { enabled = false }
     bintray    { enabled = true }
     publishing { enabled = true }
 }
@@ -44,6 +42,7 @@ dependencies {
 
     testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+    testImplementation "io.micronaut:micronaut-http-server-netty"
 
     testImplementation "io.micronaut:micronaut-inject-groovy"
     testImplementation("org.spockframework:spock-core") {
@@ -51,11 +50,12 @@ dependencies {
     }
 }
 
-tasks.withType(Test) {
-    if (System.getProperty('curated.publicationkey')) {
-        systemProperty 'curated.publicationkey', System.getProperty('curated.publicationkey')
-    }
-    if (System.getProperty('curated.apikey')) {
-        systemProperty 'curated.apikey', System.getProperty('curated.apikey')
-    }
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
 }
