@@ -19,3 +19,4 @@ plugins {
     id 'org.kordamp.gradle.guide'   version '0.39.0'
 }
 
+version projectVersion
