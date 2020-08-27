@@ -1,7 +1,8 @@
 # Curated API Micronaut Java Library
 
 - https://github.com/sdelamo/curatedapi[Code Repository]
-
+- https://github.com/sdelamo/curatedapi/releases[Releases]
+- https://bintray.com/beta/#/groovycalamari/maven/curatedapi[Artifacts]
 - https://sdelamo.github.io/curatedapi/api-xref/index.html[Java Docs]
 
 This project is a Java libray to consume the https://curated.co[Curated] API. It is built with https://micronaut.io[Micronaut] and you can use it in a Micronaut app or as a standalone library.
@@ -11,6 +12,27 @@ The library exposes methods to consume the endpoints described in the https://cu
 - http://support.curated.co/integrations/getting-started-with-the-curated-api/[Getting Curated API]
 - http://support.curated.co/integrations/fetching-issue-data-with-the-api/[Fetching Issue data with the API]
 - http://support.curated.co/integrations/adding-subscribers-with-the-api/[Adding subscribers with the API]
+
+== Dependency snippet
+
+To use it with https://gradle.org[Gradle]:
+
+[source,groovy]
+----
+implementation 'groovycalamari.curated:curated:0.0.1'
+----
+
+To use it with https://maven.apache.org[Maven]:
+
+[source,xml]
+----
+<dependency>
+<groupId>groovycalamari.curated</groupId>
+<artifactId>curated</artifactId>
+<version>0.0.1</version>
+<type>pom</type>
+</dependency>
+----
 
 
 == Configuration
