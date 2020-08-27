@@ -21,10 +21,9 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.QueryValue;
 import io.reactivex.Single;
-
 import edu.umd.cs.findbugs.annotations.NonNull;
-
 import javax.annotation.Nullable;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -35,7 +34,10 @@ import javax.validation.constraints.Positive;
  * @author Sergio del Amo
  */
 public interface CuratedApi {
-    Single<Issue> issue(@PathVariable @NonNull @NotNull @Positive Integer issueNumber);
+    String PATH_ISSUES = "/issues";
+    String PATH_EMAIL_SUBSCRIBERS = "/email_subscribers";
+
+    Single<Issue> issue(@PathVariable @NonNull @NotNull @Positive Integer number);
 
     /**
      * @param perPage How many issues to include in the results. The default value for this is 10 and the maximum value is 250.
@@ -63,5 +65,5 @@ public interface CuratedApi {
         return issues(null, null);
     }
 
-    Single<AddEmailSubscriberResponse> addEmailSubscriber(@Body AddEmailSubscriber subscriber);
+    Single<AddEmailSubscriberResponse> addEmailSubscriber(@Body @Valid @NotNull @NonNull AddEmailSubscriber subscriber);
 }

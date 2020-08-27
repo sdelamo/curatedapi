@@ -46,20 +46,20 @@ import javax.validation.constraints.Positive;
 @Retryable(
         attempts = "${" + CuratedConfigurationProperties.PREFIX + ".retry.attempts:0}",
         delay = "${" + CuratedConfigurationProperties.PREFIX + ".retry.delay:5s}")
-@Header(name = "Authorization", value = "Token token=\"" + "${" + CuratedConfigurationProperties.PREFIX + ".api-key}" + "\"")
+@Header(name = HttpHeaders.AUTHORIZATION, value = "Token token=\"" + "${" + CuratedConfigurationProperties.PREFIX + ".api-key}" + "\"")
 @Header(name = HttpHeaders.ACCEPT, value = MediaType.APPLICATION_JSON)
 @Header(name = HttpHeaders.CONTENT_TYPE, value = MediaType.APPLICATION_JSON)
 public interface CuratedClient extends CuratedApi {
 
     @Override
-    @Get("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + "/issues/{issueNumber}")
-    Single<Issue> issue(@PathVariable @Nonnull @NotNull @Positive Integer issueNumber);
+    @Get("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + PATH_ISSUES + "/{number}")
+    Single<Issue> issue(@PathVariable @Nonnull @NotNull @Positive Integer number);
 
     @Override
-    @Get("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + "/issues")
+    @Get("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + PATH_ISSUES)
     Single<Issues> issues(@QueryValue("per_page") @Nullable @Positive  @Max(250) Integer perPage,
                           @QueryValue @Nullable @Positive Integer page);
 
-    @Post("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + "/email_subscribers")
-    Single<AddEmailSubscriberResponse> addEmailSubscriber(@Body @Valid @NonNull @NotNull AddEmailSubscriber subscriber);
+    @Post("/"+ "${" + CuratedConfigurationProperties.PREFIX + ".publication-key:`" + CuratedConfigurationProperties.V1 + "`}" + "/api/" + "${" + CuratedConfigurationProperties.PREFIX + ".api-version:`" + CuratedConfigurationProperties.V1 + "`}" + PATH_EMAIL_SUBSCRIBERS)
+    Single<AddEmailSubscriberResponse> addEmailSubscriber(@Body @Valid @NotNull @NonNull AddEmailSubscriber subscriber);
 }

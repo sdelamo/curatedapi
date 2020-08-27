@@ -31,7 +31,7 @@ import java.time.Duration;
 @Requires(property = CuratedConfigurationProperties.PREFIX + ".publication-key")
 @Requires(property = CuratedConfigurationProperties.PREFIX + ".api-key")
 @ConfigurationProperties(CuratedConfigurationProperties.PREFIX)
-public class CuratedConfigurationProperties extends HttpClientConfiguration {
+public class CuratedConfigurationProperties extends HttpClientConfiguration implements CuratedConfiguration {
     public static final String PREFIX = "curated";
     public static final String HOST_LIVE = "https://api.curated.co";
     public static final String V1 = "v1";
@@ -62,6 +62,7 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
 
     @NotBlank
     @NonNull
+    @Override
     public String getApiVersion() {
         return this.apiVersion;
     }
@@ -72,6 +73,7 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
 
     @NotBlank
     @NonNull
+    @Override
     public String getPublicationKey() {
         return this.publicationKey;
     }
@@ -82,6 +84,7 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
 
     @NotBlank
     @NonNull
+    @Override
     public String getApiKey() {
         return this.apiKey;
     }
@@ -92,6 +95,7 @@ public class CuratedConfigurationProperties extends HttpClientConfiguration {
 
     @NotBlank
     @NonNull
+    @Override
     public String getUrl() {
         return this.url;
     }

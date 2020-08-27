@@ -27,21 +27,32 @@ import io.micronaut.http.annotation.Post
 import io.micronaut.runtime.server.EmbeddedServer
 import spock.lang.Specification
 
-class CuratedClientSpec extends Specification {
+class ManualCuratedClientSpec extends Specification {
 
-    void "You can consume the curated api with declarative api"() {
+    void "You can consume the curated api with manual api"() {
         given:
         int curatedPort = SocketUtils.findAvailableTcpPort()
         EmbeddedServer curatedServer = ApplicationContext.run(EmbeddedServer, [
-                'spec.name': 'curated',
+                'spec.name': 'ManualCuratedClientSpec',
                 'micronaut.server.port': curatedPort,
         ])
-        ApplicationContext applicationContext = ApplicationContext.run([
-                'curated.publication-key': 'PUBLICATION_KEY',
-                'curated.api-key': 'API_KEY',
-                'curated.url': "http://localhost:${curatedPort}"
-        ])
-        CuratedApi curatedApi = applicationContext.getBean(CuratedApi)
+        CuratedApi curatedApi = new ManualCuratedApi(new CuratedConfiguration() {
+            @Override
+            String getPublicationKey() {
+                'PUBLICATION_KEY'
+            }
+
+            @Override
+            String getApiKey() {
+                'API_KEY'
+
+            }
+
+            @Override
+            String getUrl() {
+                "http://localhost:${curatedPort}"
+            }
+        })
 
         when:
         String email = 'steve@apple.com'
@@ -116,10 +127,8 @@ class CuratedClientSpec extends Specification {
         issue.categories.first().items.last().embeddedLinks != null
         issue.categories.first().items.last().embeddedLinks.isEmpty()
 
-
         cleanup:
         curatedServer.close()
-        applicationContext.close()
     }
 
     static List<Summary> fetchAll(CuratedApi curatedApi) {
@@ -137,7 +146,7 @@ class CuratedClientSpec extends Specification {
         summaries
     }
 
-    @Requires(property = "spec.name", value = "curated")
+    @Requires(property = "spec.name", value = "ManualCuratedClientSpec")
     @Controller
     static class CuratedController {
 

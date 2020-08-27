@@ -22,6 +22,24 @@ curated:
 
 Once, you have the configuration in place, the library registers a bean of type `CuratedApi` in the application context.
 
+You can use the library without a Micronaut Application Context. In that coase, to obtain a `CuratedApi` do:
+
+
+[source,java]
+----
+CuratedApi curatedApi = new ManualCuratedApi(new CuratedConfiguration() {
+    @Override
+    public String getPublicationKey() {
+        return "XXXX";
+    }
+
+    @Override
+    public String getApiKey() {
+        return "YYYY";
+    }
+});
+----
+
 == Fetch issues
 
 [source,java]
