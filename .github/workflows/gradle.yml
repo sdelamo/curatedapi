@@ -17,9 +17,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-        - name: Publish Documentation
-          run: ./publish.sh
-          env:
-            GITHUB_SLUG: sdelamo/curatedapi
-            GH_TOKEN: ${{ secrets.GH_TOKEN }}
-            GRADLE_TASK: createGuide
+    - name: Publish Documentation
+      run: ./publish.sh
+      env:
+        GITHUB_SLUG: sdelamo/curatedapi
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GRADLE_TASK: createGuide
