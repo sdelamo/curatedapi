@@ -16,11 +16,12 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_configuration">1. Configuration</a></li>
-<li><a href="#_fetch_issues">2. Fetch issues</a></li>
-<li><a href="#_fetch_single_issue">3. Fetch single Issue</a></li>
-<li><a href="#_add_email_subscriber">4. Add email subscriber</a></li>
-<li><a href="#_build">5. Build</a></li>
+<li><a href="#_dependency_snippet">1. Dependency snippet</a></li>
+<li><a href="#_configuration">2. Configuration</a></li>
+<li><a href="#_fetch_issues">3. Fetch issues</a></li>
+<li><a href="#_fetch_single_issue">4. Fetch single Issue</a></li>
+<li><a href="#_add_email_subscriber">5. Add email subscriber</a></li>
+<li><a href="#_build">6. Build</a></li>
 </ul>
 </div>
 </div>
@@ -31,6 +32,12 @@
 <ul>
 <li>
 <p><a href="https://github.com/sdelamo/curatedapi">Code Repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sdelamo/curatedapi/releases">Releases</a></p>
+</li>
+<li>
+<p><a href="https://bintray.com/beta/#/groovycalamari/maven/curatedapi">Artifacts</a></p>
 </li>
 <li>
 <p><a href="https://sdelamo.github.io/curatedapi/api-xref/index.html">Java Docs</a></p>
@@ -59,7 +66,33 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>1. Configuration</h2>
+<h2 id="_dependency_snippet"><a class="anchor" href="#_dependency_snippet"></a>1. Dependency snippet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use it with <a href="https://gradle.org">Gradle</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">implementation <span class="string"><span class="delimiter">'</span><span class="content">groovycalamari.curated:curated:0.0.1</span><span class="delimiter">'</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To use it with <a href="https://maven.apache.org">Maven</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+<span class="tag">&lt;groupId&gt;</span>groovycalamari.curated<span class="tag">&lt;/groupId&gt;</span>
+<span class="tag">&lt;artifactId&gt;</span>curated<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;version&gt;</span>0.0.1<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>2. Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you want to use the library in Micronaut application, you will need to configure your Curated&#8217;s publication and api key in the configuration file of your application:</p>
@@ -96,7 +129,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fetch_issues"><a class="anchor" href="#_fetch_issues"></a>2. Fetch issues</h2>
+<h2 id="_fetch_issues"><a class="anchor" href="#_fetch_issues"></a>3. Fetch issues</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -110,7 +143,7 @@ Single&lt;Issues&gt; issues = curatedApi.issues();</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fetch_single_issue"><a class="anchor" href="#_fetch_single_issue"></a>3. Fetch single Issue</h2>
+<h2 id="_fetch_single_issue"><a class="anchor" href="#_fetch_single_issue"></a>4. Fetch single Issue</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -124,7 +157,7 @@ Single&lt;Issue&gt; issues = curatedApi.issue(<span class="integer">1</span>);</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_email_subscriber"><a class="anchor" href="#_add_email_subscriber"></a>4. Add email subscriber</h2>
+<h2 id="_add_email_subscriber"><a class="anchor" href="#_add_email_subscriber"></a>5. Add email subscriber</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -138,7 +171,7 @@ Single&lt;Issue&gt; issues = curatedApi.issue(<span class="integer">1</span>);</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build"><a class="anchor" href="#_build"></a>5. Build</h2>
+<h2 id="_build"><a class="anchor" href="#_build"></a>6. Build</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This library uses <a href="https://gradle.org">Gradle</a>. It uses the plugins:</p>
@@ -158,7 +191,7 @@ Single&lt;Issue&gt; issues = curatedApi.issue(<span class="integer">1</span>);</
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-27 05:27:07 UTC
+Last updated 2020-08-27 05:37:56 UTC
 </div>
 </div>
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
