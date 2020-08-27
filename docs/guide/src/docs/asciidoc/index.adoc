@@ -1,5 +1,8 @@
 # Curated API Micronaut Java Library
 
+- https://github.com/sdelamo/curatedapi[Repository]
+- https://sdelamo.github.io/curatedapi/api-xref/index.html[Java Docs]
+
 This project is a Java libray to consume the https://curated.co[Curated] API.
 
 The library exposes methods to consume the endpoints described in the https://curated.co[Curated] API documentation:
@@ -7,6 +10,7 @@ The library exposes methods to consume the endpoints described in the https://cu
 - http://support.curated.co/integrations/getting-started-with-the-curated-api/[Getting Curated API]
 - http://support.curated.co/integrations/fetching-issue-data-with-the-api/[Fetching Issue data with the API]
 - http://support.curated.co/integrations/adding-subscribers-with-the-api/[Adding subscribers with the API]
+
 
 == Configuration
 
@@ -73,9 +77,9 @@ CuratedApi curatedApi;
  Single<AddEmailSubscriberResponse> response = curatedApi.addEmailSubscriber(new AddEmailSubscriber("steve@apple.com"));
 ----
 
-=== Infrastructure
+=== Build
 
-This library is built with https://gradle.org[Gradle]. It uses the following plugins:
+This library uses https://gradle.org[Gradle]. It uses the plugins:
 
 - https://kordamp.org/kordamp-gradle-plugins/[Kordamp Gradle Plugins]
 - https://plugins.gradle.org/plugin/com.gradle.build-scan[Gradle Build Scan Plugins]

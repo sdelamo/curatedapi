@@ -22,4 +22,3 @@ jobs:
       env:
         GITHUB_SLUG: sdelamo/curatedapi
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        GRADLE_TASK: createGuide

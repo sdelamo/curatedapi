@@ -22,7 +22,7 @@ git config --global user.name "${COMMIT_NAME}"
 git config --global credential.helper "store --file=~/.git-credentials"
 echo "https://$GH_TOKEN:@github.com" > ~/.git-credentials
 
-./gradlew ${GRADLE_TASK} --scan || EXIT_STATUS=$?
+./gradlew createGuide --scan || EXIT_STATUS=$?
 
 if [[ $EXIT_STATUS -ne 0 ]]; then
     echo "Project Build failed"
@@ -31,14 +31,18 @@ fi
 
 git clone https://${GH_TOKEN}@github.com/${GITHUB_SLUG}.git -b gh-pages gh-pages --single-branch > /dev/null
 cd gh-pages
+ls -la ../docs/guide/build/guide/*
 cp -r ../docs/guide/build/guide/* .
-if git diff --quiet; then
-  echo "No changes in documentation"
-else
-  git add -A
-  git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
-  git push origin HEAD
-fi
+git add -A
+git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
+git push origin HEAD
+#if git diff --quiet; then
+#  echo "No changes in documentation"
+#else
+#  git add -A
+#  git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
+#  git push origin HEAD
+#fi
 
 cd ..
 rm -rf gh-pages
