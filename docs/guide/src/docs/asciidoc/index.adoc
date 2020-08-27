@@ -1,9 +1,10 @@
 # Curated API Micronaut Java Library
 
-- https://github.com/sdelamo/curatedapi[Repository]
+- https://github.com/sdelamo/curatedapi[Code Repository]
+
 - https://sdelamo.github.io/curatedapi/api-xref/index.html[Java Docs]
 
-This project is a Java libray to consume the https://curated.co[Curated] API.
+This project is a Java libray to consume the https://curated.co[Curated] API. It is built with https://micronaut.io[Micronaut] and you can use it in a Micronaut app or as a standalone library.
 
 The library exposes methods to consume the endpoints described in the https://curated.co[Curated] API documentation:
 
