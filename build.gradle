@@ -81,6 +81,9 @@ config {
         }
         userOrg    = bintrayUserOrg
         name       = githubSlug
+        githubRepo = "${githubOrg}/${githubSlug}"
+        publish = true
+        publicDownloadNumbers = true
     }
 }
 

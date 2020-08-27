@@ -15,7 +15,7 @@ The library exposes methods to consume the endpoints described in the https://cu
 
 == Configuration
 
-You will need to configure your publication and api key
+If you want to use the library in Micronaut application, you will need to configure your Curated's publication and api key in the configuration file of your application:
 
 .application.yml
 [source,yaml]
@@ -25,10 +25,9 @@ curated:
   api-key: 'YYYY'
 ----
 
-Once, you have the configuration in place, the library registers a bean of type `CuratedApi` in the application context.
+Once, you have the configuration in place, the library registers a bean of type `CuratedApi` in the Micronaut's application context.
 
-You can use the library without a Micronaut Application Context. In that coase, to obtain a `CuratedApi` do:
-
+You can use the library without a Micronaut Application Context. In that case, to obtain a `CuratedApi` do:
 
 [source,java]
 ----
@@ -78,7 +77,7 @@ CuratedApi curatedApi;
  Single<AddEmailSubscriberResponse> response = curatedApi.addEmailSubscriber(new AddEmailSubscriber("steve@apple.com"));
 ----
 
-=== Build
+== Build
 
 This library uses https://gradle.org[Gradle]. It uses the plugins:
 
