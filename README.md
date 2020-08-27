@@ -1,0 +1,1 @@
+[Docs](https://sdelamo.github.io/curatedapi/index.html)
