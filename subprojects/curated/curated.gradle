@@ -42,11 +42,21 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client:$micronautVersion"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
-    api 'io.reactivex.rxjava2:rxjava:2.2.10'
-    api 'com.github.spotbugs:spotbugs-annotations:4.0.3'
-    api 'javax.validation:validation-api:2.0.1.Final'
-    api "io.micronaut:micronaut-core:$micronautVersion"
-    api "io.micronaut:micronaut-http:$micronautVersion"
+    api('io.reactivex.rxjava2:rxjava:2.2.10') {
+        transitive(false)
+    }
+    api('com.github.spotbugs:spotbugs-annotations:4.0.3') {
+        transitive(false)
+    }
+    api('javax.validation:validation-api:2.0.1.Final') {
+        transitive(false)
+    }
+    api("io.micronaut:micronaut-core:$micronautVersion") {
+        transitive(false)
+    }
+    api("io.micronaut:micronaut-http:$micronautVersion") {
+        transitive(false)
+    }
 
     testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
