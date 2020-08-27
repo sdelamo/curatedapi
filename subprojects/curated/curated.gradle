@@ -36,15 +36,16 @@ dependencies {
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
 
-    api platform("io.micronaut:micronaut-bom:$micronautVersion")
-    api "io.micronaut:micronaut-validation"
-    api "io.micronaut:micronaut-inject"
-    api "io.micronaut:micronaut-runtime"
-    api "io.micronaut:micronaut-http-client"
+    api "io.micronaut:micronaut-validation:$micronautVersion"
+    api "io.micronaut:micronaut-inject:$micronautVersion"
+    api "io.micronaut:micronaut-runtime:$micronautVersion"
+    api "io.micronaut:micronaut-http-client:$micronautVersion"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
-    testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+
+    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation "io.micronaut:micronaut-http-server-netty"
     testImplementation "io.micronaut:micronaut-inject-groovy"
     testImplementation("org.spockframework:spock-core") {
