@@ -22,7 +22,7 @@ git config --global user.name "${COMMIT_NAME}"
 git config --global credential.helper "store --file=~/.git-credentials"
 echo "https://$GH_TOKEN:@github.com" > ~/.git-credentials
 
-./gradlew ${GRADLE_TASK} || EXIT_STATUS=$?
+./gradlew ${GRADLE_TASK} --scan || EXIT_STATUS=$?
 
 if [[ $EXIT_STATUS -ne 0 ]]; then
     echo "Project Build failed"
