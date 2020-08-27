@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Curated API Micronaut Java Library</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Curated API Micronaut Java Library</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_configuration">1. Configuration</a></li>
+<li><a href="#_fetch_issues">2. Fetch issues</a></li>
+<li><a href="#_fetch_single_issue">3. Fetch single Issue</a></li>
+<li><a href="#_add_email_subscriber">4. Add email subscriber</a>
+<ul class="sectlevel2">
+<li><a href="#_build">4.1. Build</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/sdelamo/curatedapi">Repository</a></p>
+</li>
+<li>
+<p><a href="https://sdelamo.github.io/curatedapi/api-xref/index.html">Java Docs</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This project is a Java libray to consume the <a href="https://curated.co">Curated</a> API.</p>
+</div>
+<div class="paragraph">
+<p>The library exposes methods to consume the endpoints described in the <a href="https://curated.co">Curated</a> API documentation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://support.curated.co/integrations/getting-started-with-the-curated-api/">Getting Curated API</a></p>
+</li>
+<li>
+<p><a href="http://support.curated.co/integrations/fetching-issue-data-with-the-api/">Fetching Issue data with the API</a></p>
+</li>
+<li>
+<p><a href="http://support.curated.co/integrations/adding-subscribers-with-the-api/">Adding subscribers with the API</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>1. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will need to configure your publication and api key</p>
+</div>
+<div class="listingblock">
+<div class="title">application.yml</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">curated</span>:
+  <span class="key">publication-key</span>: <span class="string"><span class="content">'XXXX'</span></span>
+  <span class="key">api-key</span>: <span class="string"><span class="content">'YYYY'</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once, you have the configuration in place, the library registers a bean of type <code>CuratedApi</code> in the application context.</p>
+</div>
+<div class="paragraph">
+<p>You can use the library without a Micronaut Application Context. In that coase, to obtain a <code>CuratedApi</code> do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CuratedApi curatedApi = <span class="keyword">new</span> ManualCuratedApi(<span class="keyword">new</span> CuratedConfiguration() {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">String</span> getPublicationKey() {
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">XXXX</span><span class="delimiter">&quot;</span></span>;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">String</span> getApiKey() {
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">YYYY</span><span class="delimiter">&quot;</span></span>;
+    }
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fetch_issues"><a class="anchor" href="#_fetch_issues"></a>2. Fetch issues</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CuratedApi curatedApi;
+
+....
+
+Single&lt;Issues&gt; issues = curatedApi.issues();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fetch_single_issue"><a class="anchor" href="#_fetch_single_issue"></a>3. Fetch single Issue</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CuratedApi curatedApi;
+
+....
+
+Single&lt;Issue&gt; issues = curatedApi.issue(<span class="integer">1</span>);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_email_subscriber"><a class="anchor" href="#_add_email_subscriber"></a>4. Add email subscriber</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CuratedApi curatedApi;
+
+....
+
+ Single&lt;AddEmailSubscriberResponse&gt; response = curatedApi.addEmailSubscriber(<span class="keyword">new</span> AddEmailSubscriber(<span class="string"><span class="delimiter">&quot;</span><span class="content">steve@apple.com</span><span class="delimiter">&quot;</span></span>));</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build"><a class="anchor" href="#_build"></a>4.1. Build</h3>
+<div class="paragraph">
+<p>This library uses <a href="https://gradle.org">Gradle</a>. It uses the plugins:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kordamp.org/kordamp-gradle-plugins/">Kordamp Gradle Plugins</a></p>
+</li>
+<li>
+<p><a href="https://plugins.gradle.org/plugin/com.gradle.build-scan">Gradle Build Scan Plugins</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-08-27 04:55:32 UTC
+</div>
+</div>
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</body>
+</html>
