@@ -34,7 +34,7 @@ if (System.getenv('BINTRAY_USER') != null) {
     ext.bintrayUsername = '**UNDEFINED**'
 }
 if (System.getenv('BINTRAY_KEY') != null) {
-    ext.bintrayUsername = System.getenv('BINTRAY_KEY')
+    ext.bintrayApiKey = System.getenv('BINTRAY_KEY')
 } else if (!project.hasProperty('bintrayApiKey')) {
     ext.bintrayApiKey   = '**UNDEFINED**'
 }
