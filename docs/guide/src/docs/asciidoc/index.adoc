@@ -72,3 +72,10 @@ CuratedApi curatedApi;
 
  Single<AddEmailSubscriberResponse> response = curatedApi.addEmailSubscriber(new AddEmailSubscriber("steve@apple.com"));
 ----
+
+=== Infrastructure
+
+This library is built with https://gradle.org[Gradle]. It uses the following plugins:
+
+- https://kordamp.org/kordamp-gradle-plugins/[Kordamp Gradle Plugins]
+- https://plugins.gradle.org/plugin/com.gradle.build-scan[Gradle Build Scan Plugins]

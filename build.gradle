@@ -19,16 +19,25 @@ plugins {
     id 'org.kordamp.gradle.project' version '0.39.0'
     id 'org.kordamp.gradle.bintray' version '0.39.0'
     id 'groovy'
-    id "com.gradle.build-scan" version "3.0"
+    id "com.gradle.build-scan" version "3.4.1"
 }
 
 ext {
-    githubSlug = 'curated'
-    githubOrg = 'groovycalamari'
+    githubSlug = 'curatedapi'
+    githubOrg = 'sdelamo'
+    bintrayUserOrg = 'groovycalamari'
 }
 
-if (!project.hasProperty('bintrayUsername')) ext.bintrayUsername = '**UNDEFINED**'
-if (!project.hasProperty('bintrayApiKey'))   ext.bintrayApiKey   = '**UNDEFINED**'
+if (System.getenv('BINTRAY_USER') != null) {
+    ext.bintrayUsername = System.getenv('BINTRAY_USER')
+} else if (!project.hasProperty('bintrayUsername')) {
+    ext.bintrayUsername = '**UNDEFINED**'
+}
+if (System.getenv('BINTRAY_KEY') != null) {
+    ext.bintrayUsername = System.getenv('BINTRAY_KEY')
+} else if (!project.hasProperty('bintrayApiKey')) {
+    ext.bintrayApiKey   = '**UNDEFINED**'
+}
 
 config {
     release = (rootProject.findProperty('release') ?: false).toBoolean()
@@ -70,7 +79,7 @@ config {
             username = project.bintrayUsername
             password = project.bintrayApiKey
         }
-        userOrg    = githubOrg
+        userOrg    = bintrayUserOrg
         name       = githubSlug
     }
 }
