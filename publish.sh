@@ -33,16 +33,14 @@ git clone https://${GH_TOKEN}@github.com/${GITHUB_SLUG}.git -b gh-pages gh-pages
 cd gh-pages
 ls -la ../docs/guide/build/guide/*
 cp -r ../docs/guide/build/guide/* .
-git add -A
-git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
-git push origin HEAD
-#if git diff --quiet; then
-#  echo "No changes in documentation"
-#else
-#  git add -A
-#  git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
-#  git push origin HEAD
-#fi
+
+if git diff --quiet; then
+  echo "No changes in documentation"
+else
+  git add -A
+  git commit -a -m "Updating $GITHUB_SLUG gh-pages branch for Github Actions run:$GITHUB_RUN_ID"
+  git push origin HEAD
+fi
 
 cd ..
 rm -rf gh-pages
